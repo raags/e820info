@@ -25,7 +25,7 @@
 import sys
 import os
 
-def parse(line):
+def subtract(line):
     k,v = line.split(' - ')
     a = int(k, 16)
     b = int(v, 16)
@@ -36,9 +36,9 @@ def main(file_name):
     total = 0
     fname = open(file_name,'ro')
     for line in fname:
-        if line.endswith('(usable)\n'):
-            addr_range = line.split(' BIOS-e820:')[1].split('(usable)\n')[0].strip()
-            result = parse(addr_range)
+            l = line.split(' ')[2]
+            h = line.split(' ')[4]
+            result = int(h, 16) - int(l, 16)
             total = total + result
             line = line.strip('\n')
             print line + "  : " + '%s' % result
