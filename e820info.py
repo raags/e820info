@@ -25,17 +25,11 @@
 import sys
 import os
 
-def subtract(line):
-    k,v = line.split(' - ')
-    a = int(k, 16)
-    b = int(v, 16)
-    return b - a
-
-
 def main(file_name):
     total = 0
     fname = open(file_name,'ro')
     for line in fname:
+        if "BIOS-e820:" in line:
             l = line.split(' ')[2]
             h = line.split(' ')[4]
             result = int(h, 16) - int(l, 16)
