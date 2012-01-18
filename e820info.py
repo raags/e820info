@@ -27,16 +27,22 @@ import os
 
 def main(file_name):
     total = 0
+    usable = 0
     fname = open(file_name,'ro')
     for line in fname:
         if "BIOS-e820:" in line:
             l = line.split(' ')[2]
             h = line.split(' ')[4]
+            key = line.split(' ')[5]
             result = int(h, 16) - int(l, 16)
             total = total + result
+            if "usable" in key:
+                usable = usable + result
             line = line.strip('\n')
             print line + "  : " + '%s' % result
+    print "\n"
     print "Total : %s" % total
+    print "Usable: %s" % usable
 
 
 if __name__ == '__main__':
