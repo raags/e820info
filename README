@@ -5,6 +5,11 @@ Generates information from the input e820 bios map
 
 == Usage ==
 
+Get the data like so :
+
+$ grep e820 /var/log/dmesg > data
+
+
 $ python e820info.py example/data
  BIOS-e820: 0000000000010000 - 0000000000095400 (usable)  : 545792
  BIOS-e820: 0000000000100000 - 000000007f5f0000 (usable)  : 2135883776
@@ -20,4 +25,5 @@ Total : 240507118592
 
 == Todo ==
 
+* Make it work on newer kernels < 2.6.32
 * Add information on the reserved maps
